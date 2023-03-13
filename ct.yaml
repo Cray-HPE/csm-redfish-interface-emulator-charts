@@ -1,0 +1,5 @@
+---
+chart-dirs: []
+chart-repos: []
+validate-maintainers: false
+check-version-increment: false
