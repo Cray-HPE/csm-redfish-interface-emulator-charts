@@ -1,3 +1,81 @@
 ---
 global:
   appVersion: 1.3.1
+
+image:
+  repository: artifactory.algol60.net/csm-docker/stable/csm-rie
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 100Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+hardware:
+  x1000c0b0: { mockup: CMM,  macSchema: Mountain }
+  x1000c0s0b0: { mockup: EX425 }
+  x1000c0s0b1: { mockup: EX425 }
+  x1000c1s0b0: { mockup: EX425 }
+  x1000c1s0b1: { mockup: EX425 }
+  x1000c2s0b0: { mockup: EX425 }
+  x1000c2s0b1: { mockup: EX425 }
+  x1000c3s0b0: { mockup: EX425 }
+  x1000c3s0b1: { mockup: EX425 }
+  x1000c4s0b0: { mockup: EX425 }
+  x1000c4s0b1: { mockup: EX425 }
+  x1000c5s0b0: { mockup: EX425 }
+  x1000c5s0b1: { mockup: EX425 }
+  x1000c6s0b0: { mockup: EX425 }
+  x1000c6s0b1: { mockup: EX425 }
+  x1000c7s0b0: { mockup: EX425 }
+  x1000c7s0b1: { mockup: EX425 }
+  x1000c0r1b0: { mockup: Slingshot_Switch_Blade }
+  x1000c0r3b0: { mockup: Slingshot_Switch_Blade }
+  x1000c0r5b0: { mockup: Slingshot_Switch_Blade }
+  x1000c0r7b0: { mockup: Slingshot_Switch_Blade }
+
+metadata:
+  x1000c0: {Class: Mountain}
+  x1000c0b0: {Class: Mountain}
+
+  x1000c0s0b0n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1001, Aliases: [nid001001]}}
+  x1000c0s0b0n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1002, Aliases: [nid001002]}}
+  x1000c0s0b1n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1003, Aliases: [nid001003]}}
+  x1000c0s0b1n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1004, Aliases: [nid001004]}}
+
+  x1000c0s1b0n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1005, Aliases: [nid001005]}}
+  x1000c0s1b0n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1006, Aliases: [nid001006]}}
+  x1000c0s1b1n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1007, Aliases: [nid001007]}}
+  x1000c0s1b1n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1008, Aliases: [nid001008]}}
+
+  x1000c0s2b0n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1009, Aliases: [nid001009]}}
+  x1000c0s2b0n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1010, Aliases: [nid001010]}}
+  x1000c0s2b1n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1011, Aliases: [nid001011]}}
+  x1000c0s2b1n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1012, Aliases: [nid001012]}}
+
+  x1000c0s3b0n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1013, Aliases: [nid001013]}}
+  x1000c0s3b0n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1014, Aliases: [nid001014]}}
+  x1000c0s3b1n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1015, Aliases: [nid001015]}}
+  x1000c0s3b1n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1016, Aliases: [nid001016]}}
+
+  x1000c0s4b0n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1017, Aliases: [nid001017]}}
+  x1000c0s4b0n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1018, Aliases: [nid001018]}}
+  x1000c0s4b1n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1019, Aliases: [nid001019]}}
+  x1000c0s4b1n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1020, Aliases: [nid001020]}}
+
+  x1000c0s5b0n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1021, Aliases: [nid001021]}}
+  x1000c0s5b0n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1022, Aliases: [nid001022]}}
+  x1000c0s5b1n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1023, Aliases: [nid001023]}}
+  x1000c0s5b1n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1024, Aliases: [nid001024]}}
+
+  x1000c0s6b0n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1025, Aliases: [nid001025]}}
+  x1000c0s6b0n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1026, Aliases: [nid001026]}}
+  x1000c0s6b1n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1027, Aliases: [nid001027]}}
+  x1000c0s6b1n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1028, Aliases: [nid001028]}}
+
+  x1000c0s7b0n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1029, Aliases: [nid001029]}}
+  x1000c0s7b0n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1030, Aliases: [nid001030]}}
+  x1000c0s7b1n0: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1031, Aliases: [nid001031]}}
+  x1000c0s7b1n1: {Class: Mountain, ExtraProperties: {Role: Compute, NID: 1032, Aliases: [nid001032]}}

@@ -1,0 +1,54 @@
+{{- range $xname, $v := .Values.hardware }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  "csm-redfish-interface-emulator-{{ $xname }}"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "csm-redfish-interface-emulator-{{ $xname }}"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ $xname }}"
+        helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
+        app.kubernetes.io/managed-by: "{{ $.Release.Service }}"
+        app.kubernetes.io/instance: "{{ $.Release.Name }}"
+    spec:
+      containers:
+        - name: rie
+          image: "{{ $.Values.image.repository }}:{{ $.Values.global.appVersion }}"
+          env:
+          - name: MOCKUPFOLDER
+            value: {{ $v.mockup | quote }}
+          - name: XNAME
+            value: {{ $xname | quote }}
+          - name: AUTH_CONFIG
+            value: root:root_password
+          - name: PORT
+            value: "443"
+          resources:
+          {{- $.Values.resources | toYaml | nindent 12 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $xname | quote }}
+  labels:
+    app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ $xname }}"
+    helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
+    app.kubernetes.io/managed-by: "{{ $.Release.Service }}"
+    app.kubernetes.io/instance: "{{ $.Release.Name }}"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 443
+      targetPort: 443
+      name: rie-https
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ $xname }}"
+
+{{- end }}
