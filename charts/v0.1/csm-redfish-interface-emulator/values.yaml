@@ -15,38 +15,38 @@ resources:
     memory: 512Mi
 
 hardware:
-  x1000c0b0: { mockup: CMM, macSchema: Mountain, defaultPasswordSource: Mountain }
-  x1000c0s0b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s0b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s1b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s1b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s2b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s2b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s3b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s3b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s4b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s4b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s5b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s5b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s6b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s6b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s7b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0s7b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
-  x1000c0r1b0: { mockup: Slingshot_Switch_Blade, macSchema: Mountain, }
-  x1000c0r3b0: { mockup: Slingshot_Switch_Blade, macSchema: Mountain, }
-  x1000c0r5b0: { mockup: Slingshot_Switch_Blade, macSchema: Mountain, }
-  x1000c0r7b0: { mockup: Slingshot_Switch_Blade, macSchema: Mountain, }
+  x1000c0b0: {mockup: CMM, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s0b0: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s0b1: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s1b0: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s1b1: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s2b0: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s2b1: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s3b0: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s3b1: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s4b0: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s4b1: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s5b0: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s5b1: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s6b0: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s6b1: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s7b0: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s7b1: {mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0r1b0: {mockup: Slingshot_Switch_Blade, macSchema: Mountain}
+  x1000c0r3b0: {mockup: Slingshot_Switch_Blade, macSchema: Mountain}
+  x1000c0r5b0: {mockup: Slingshot_Switch_Blade, macSchema: Mountain}
+  x1000c0r7b0: {mockup: Slingshot_Switch_Blade, macSchema: Mountain}
 
 metadata:
   x1000:
     Class: Mountain
-    ExtraProperties: 
+    ExtraProperties:
       # NOTE the following network information is not used for anything network related.
       # The Networks.cn.HMN key needs to exist for MEDS to discover mountain hardware from the cabinet.
       # The networks.*.*.{CIDR, Gateway,VLan} keys are needed for the HMS CT tests to pass.
-      Networks: 
-        cn: 
-          HMN: 
+      Networks:
+        cn:
+          HMN:
             CIDR: "10.104.0.0/22"
             Gateway: "10.104.0.1"
             VLan: 3000
