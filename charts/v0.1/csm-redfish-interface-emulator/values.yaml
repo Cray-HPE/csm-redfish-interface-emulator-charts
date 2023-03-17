@@ -1,6 +1,6 @@
 ---
 global:
-  appVersion: vault12
+  appVersion: 1.4.0
 
 image:
   repository: artifactory.algol60.net/csm-docker/stable/csm-rie
@@ -15,27 +15,27 @@ resources:
     memory: 512Mi
 
 hardware:
-  x1000c0b0: { mockup: CMM,  macSchema: Mountain, defaultPasswordSource: Mountain }
-  x1000c0s0b0: { mockup: EX425 }
-  x1000c0s0b1: { mockup: EX425 }
-  x1000c0s1b0: { mockup: EX425 }
-  x1000c0s1b1: { mockup: EX425 }
-  x1000c0s2b0: { mockup: EX425 }
-  x1000c0s2b1: { mockup: EX425 }
-  x1000c0s3b0: { mockup: EX425 }
-  x1000c0s3b1: { mockup: EX425 }
-  x1000c0s4b0: { mockup: EX425 }
-  x1000c0s4b1: { mockup: EX425 }
-  x1000c0s5b0: { mockup: EX425 }
-  x1000c0s5b1: { mockup: EX425 }
-  x1000c0s6b0: { mockup: EX425 }
-  x1000c0s6b1: { mockup: EX425 }
-  x1000c0s7b0: { mockup: EX425 }
-  x1000c0s7b1: { mockup: EX425 }
-  x1000c0r1b0: { mockup: Slingshot_Switch_Blade }
-  x1000c0r3b0: { mockup: Slingshot_Switch_Blade }
-  x1000c0r5b0: { mockup: Slingshot_Switch_Blade }
-  x1000c0r7b0: { mockup: Slingshot_Switch_Blade }
+  x1000c0b0: { mockup: CMM, macSchema: Mountain, defaultPasswordSource: Mountain }
+  x1000c0s0b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s0b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s1b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s1b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s2b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s2b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s3b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s3b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s4b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s4b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s5b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s5b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s6b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s6b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s7b0: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0s7b1: { mockup: EX425, macSchema: Mountain, defaultPasswordSource: Mountain}
+  x1000c0r1b0: { mockup: Slingshot_Switch_Blade, macSchema: Mountain, }
+  x1000c0r3b0: { mockup: Slingshot_Switch_Blade, macSchema: Mountain, }
+  x1000c0r5b0: { mockup: Slingshot_Switch_Blade, macSchema: Mountain, }
+  x1000c0r7b0: { mockup: Slingshot_Switch_Blade, macSchema: Mountain, }
 
 metadata:
   x1000:
