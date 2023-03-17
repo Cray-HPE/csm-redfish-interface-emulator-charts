@@ -20,17 +20,36 @@ spec:
       containers:
         - name: rie
           image: "{{ $.Values.image.repository }}:{{ $.Values.global.appVersion }}"
+          imagePullPolicy: "{{ $.Values.image.pullPolicy }}"
           env:
           - name: MOCKUPFOLDER
             value: {{ $v.mockup | quote }}
           - name: XNAME
             value: {{ $xname | quote }}
           - name: AUTH_CONFIG
-            value: root:root_password
+            value: from_vault
           - name: PORT
             value: "443"
+          - name: VAULT_ADDR
+            value: http://cray-vault.vault:8200
+          - name: VAULT_BASE_KEYPATH
+            value: ""
+          - name: VAULT_AUTH_TYPE
+            value: kubernetes
+          - name: VAULT_DEFAULT_PASSWORD_SOURCE
+            value:  {{ $v.defaultPasswordSource | default "Mountain" | quote }}
           resources:
           {{- $.Values.resources | toYaml | nindent 12 }}
+          livenessProbe:
+            httpGet:
+              path: /redfish/v1/
+              port: 443
+              scheme: HTTPS
+          readinessProbe:
+            httpGet:
+              path: /redfish/v1/
+              port: 443
+              scheme: HTTPS
 ---
 apiVersion: v1
 kind: Service

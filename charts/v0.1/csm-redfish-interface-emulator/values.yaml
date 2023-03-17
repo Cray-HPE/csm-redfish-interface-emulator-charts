@@ -1,9 +1,10 @@
 ---
 global:
-  appVersion: 1.3.1
+  appVersion: vault12
 
 image:
   repository: artifactory.algol60.net/csm-docker/stable/csm-rie
+  pullPolicy: IfNotPresent
 
 resources:
   requests:
@@ -14,29 +15,46 @@ resources:
     memory: 512Mi
 
 hardware:
-  x1000c0b0: { mockup: CMM,  macSchema: Mountain }
+  x1000c0b0: { mockup: CMM,  macSchema: Mountain, defaultPasswordSource: Mountain }
   x1000c0s0b0: { mockup: EX425 }
   x1000c0s0b1: { mockup: EX425 }
-  x1000c1s0b0: { mockup: EX425 }
-  x1000c1s0b1: { mockup: EX425 }
-  x1000c2s0b0: { mockup: EX425 }
-  x1000c2s0b1: { mockup: EX425 }
-  x1000c3s0b0: { mockup: EX425 }
-  x1000c3s0b1: { mockup: EX425 }
-  x1000c4s0b0: { mockup: EX425 }
-  x1000c4s0b1: { mockup: EX425 }
-  x1000c5s0b0: { mockup: EX425 }
-  x1000c5s0b1: { mockup: EX425 }
-  x1000c6s0b0: { mockup: EX425 }
-  x1000c6s0b1: { mockup: EX425 }
-  x1000c7s0b0: { mockup: EX425 }
-  x1000c7s0b1: { mockup: EX425 }
+  x1000c0s1b0: { mockup: EX425 }
+  x1000c0s1b1: { mockup: EX425 }
+  x1000c0s2b0: { mockup: EX425 }
+  x1000c0s2b1: { mockup: EX425 }
+  x1000c0s3b0: { mockup: EX425 }
+  x1000c0s3b1: { mockup: EX425 }
+  x1000c0s4b0: { mockup: EX425 }
+  x1000c0s4b1: { mockup: EX425 }
+  x1000c0s5b0: { mockup: EX425 }
+  x1000c0s5b1: { mockup: EX425 }
+  x1000c0s6b0: { mockup: EX425 }
+  x1000c0s6b1: { mockup: EX425 }
+  x1000c0s7b0: { mockup: EX425 }
+  x1000c0s7b1: { mockup: EX425 }
   x1000c0r1b0: { mockup: Slingshot_Switch_Blade }
   x1000c0r3b0: { mockup: Slingshot_Switch_Blade }
   x1000c0r5b0: { mockup: Slingshot_Switch_Blade }
   x1000c0r7b0: { mockup: Slingshot_Switch_Blade }
 
 metadata:
+  x1000:
+    Class: Mountain
+    ExtraProperties: 
+      # NOTE the following network information is not used for anything network related.
+      # The Networks.cn.HMN key needs to exist for MEDS to discover mountain hardware from the cabinet.
+      # The networks.*.*.{CIDR, Gateway,VLan} keys are needed for the HMS CT tests to pass.
+      Networks: 
+        cn: 
+          HMN: 
+            CIDR: "10.104.0.0/22"
+            Gateway: "10.104.0.1"
+            VLan: 3000
+          NMN:
+            CIDR: "10.100.0.0/22"
+            Gateway: "10.100.0.1"
+            VLan: 2000
+
   x1000c0: {Class: Mountain}
   x1000c0b0: {Class: Mountain}
 
