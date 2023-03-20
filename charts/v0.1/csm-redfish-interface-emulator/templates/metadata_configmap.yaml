@@ -10,4 +10,4 @@ metadata:
     app.kubernetes.io/instance: "{{ $.Release.Name }}"
 data: 
   metadata.json: |-
-{{ .Values.metadata | toJson | indent 4 }}
+{{ .Values.sls | toJson | indent 4 }}

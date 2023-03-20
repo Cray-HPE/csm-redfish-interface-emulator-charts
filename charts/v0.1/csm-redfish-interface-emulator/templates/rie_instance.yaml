@@ -1,18 +1,18 @@
-{{- range $xname, $v := .Values.hardware }}
+{{- range .Values.instances }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  "csm-redfish-interface-emulator-{{ $xname }}"
+  name:  "csm-redfish-interface-emulator-{{ .Xname }}"
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: "csm-redfish-interface-emulator-{{ $xname }}"
+      app.kubernetes.io/name: "csm-redfish-interface-emulator-{{ .Xname }}"
   replicas: 1
   template:
     metadata:
       labels:
-        app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ $xname }}"
+        app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ .Xname }}"
         helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
         app.kubernetes.io/managed-by: "{{ $.Release.Service }}"
         app.kubernetes.io/instance: "{{ $.Release.Name }}"
@@ -23,12 +23,12 @@ spec:
           imagePullPolicy: "{{ $.Values.image.pullPolicy }}"
           env:
           - name: MOCKUPFOLDER
-            value: {{ $v.mockup | quote }}
+            value: {{ .mockup | quote }}
           - name: XNAME
-            value: {{ $xname | quote }}
-          {{- if $v.macSchema }}
+            value: {{ .Xname | quote }}
+          {{- if .macSchema }}
           - name: MACSCHEMA
-            value: {{ $v.macSchema | quote }}
+            value: {{ .macSchema | quote }}
           {{- end }}
           - name: AUTH_CONFIG
             value: from_vault
@@ -41,7 +41,7 @@ spec:
           - name: VAULT_AUTH_TYPE
             value: kubernetes
           - name: VAULT_DEFAULT_PASSWORD_SOURCE
-            value:  {{ $v.defaultPasswordSource | default "Mountain" | quote }}
+            value:  {{ .defaultPasswordSource | default "Mountain" | quote }}
           resources:
           {{- $.Values.resources | toYaml | nindent 12 }}
           livenessProbe:
@@ -58,9 +58,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $xname | quote }}
+  name: {{ .Xname | quote }}
   labels:
-    app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ $xname }}"
+    app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ .Xname }}"
     helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
     app.kubernetes.io/managed-by: "{{ $.Release.Service }}"
     app.kubernetes.io/instance: "{{ $.Release.Name }}"
@@ -72,6 +72,6 @@ spec:
       name: rie-https
       protocol: TCP
   selector:
-    app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ $xname }}"
+    app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ .Xname }}"
 
 {{- end }}
