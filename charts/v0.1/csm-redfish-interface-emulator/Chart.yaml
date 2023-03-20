@@ -1,0 +1,13 @@
+apiVersion: v2
+name: "csm-redfish-interface-emulator"
+version: 0.1.0
+description: "Kubernetes resources for csm-redfish-interface-emulator"
+home: https://github.com/Cray-HPE/csm-redfish-interface-emulator-charts
+sources:
+  - https://github.com/Cray-HPE/csm-redfish-interface-emulator
+maintainers:
+  - name: Hardware Management
+    url: https://github.com/orgs/Cray-HPE/teams/hardware-management
+annotations:
+  artifacthub.io/license: MIT
+appVersion: 1.4.0

@@ -1,0 +1,77 @@
+{{- range .Values.instances }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  "csm-redfish-interface-emulator-{{ .Xname }}"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "csm-redfish-interface-emulator-{{ .Xname }}"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ .Xname }}"
+        helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
+        app.kubernetes.io/managed-by: "{{ $.Release.Service }}"
+        app.kubernetes.io/instance: "{{ $.Release.Name }}"
+    spec:
+      containers:
+        - name: rie
+          image: "{{ $.Values.image.repository }}:{{ $.Values.global.appVersion }}"
+          imagePullPolicy: "{{ $.Values.image.pullPolicy }}"
+          env:
+          - name: MOCKUPFOLDER
+            value: {{ .mockup | quote }}
+          - name: XNAME
+            value: {{ .Xname | quote }}
+          {{- if .macSchema }}
+          - name: MACSCHEMA
+            value: {{ .macSchema | quote }}
+          {{- end }}
+          - name: AUTH_CONFIG
+            value: from_vault
+          - name: PORT
+            value: "443"
+          - name: VAULT_ADDR
+            value: http://cray-vault.vault:8200
+          - name: VAULT_BASE_KEYPATH
+            value: ""
+          - name: VAULT_AUTH_TYPE
+            value: kubernetes
+          - name: VAULT_DEFAULT_PASSWORD_SOURCE
+            value:  {{ .defaultPasswordSource | default "Mountain" | quote }}
+          resources:
+          {{- $.Values.resources | toYaml | nindent 12 }}
+          livenessProbe:
+            httpGet:
+              path: /redfish/v1/
+              port: 443
+              scheme: HTTPS
+          readinessProbe:
+            httpGet:
+              path: /redfish/v1/
+              port: 443
+              scheme: HTTPS
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Xname | quote }}
+  labels:
+    app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ .Xname }}"
+    helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
+    app.kubernetes.io/managed-by: "{{ $.Release.Service }}"
+    app.kubernetes.io/instance: "{{ $.Release.Name }}"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 443
+      targetPort: 443
+      name: rie-https
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name:  "csm-redfish-interface-emulator-{{ .Xname }}"
+
+{{- end }}
