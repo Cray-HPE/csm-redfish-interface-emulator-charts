@@ -1,6 +1,6 @@
 ---
 global:
-  appVersion: 1.4.0
+  appVersion: 1.6.0
 
 image:
   repository: artifactory.algol60.net/csm-docker/stable/csm-rie
